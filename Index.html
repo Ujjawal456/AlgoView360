@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AlgoView360: DSA visualizer</title>
+    <style>
+        html, * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        #main {
+            min-height: 100vh;
+            background: wheat;
+            overflow: hidden;
+        }
+
+        .main__heading {
+            background: lightgreen;
+            box-shadow: -5px -5px 20px rgba(0, 0, 0, .3);
+            border-radius: 0 0 20px 0px;
+            font-family: ubuntu;
+            font-weight: bolder;
+            font-size: 30px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            padding: 20px 0px;
+        }
+
+        .heading__text {
+            font-family: serif;
+            color: darkgray;
+            font-weight: bolder;
+            font-size: 34px;
+        }
+
+        .section {
+            overflow-y: scroll;
+            display: flex;
+            margin: auto;
+            text-align: center;
+        }
+
+        .info__box:hover {
+            transform: translateY(-10px);
+            transition: 100ms linear;
+        }
+
+        .popup__heading {
+            font-family: ubuntu;
+            font-weight: bold;
+            font-size: 23px;
+        }
+
+        .popup__sub__heading {
+            text-align: left;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .popup__sub__heading > b {
+            color: gray;
+            font-weight: bolder;
+            font-size: 23px;
+        }
+
+        .popup__sub__heading__details {
+        }
+
+        .card-body {
+            display: flex;
+            justify-content: flex-start;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, .2);
+            background: lightgreen;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            transform: scale(.9);
+            box-shadow: 5px -5px 5px rgba(0, 0, 0, .3);
+            transition: 100ms linear;
+        }
+
+        .card:hover {
+            transform: scale(.9) translateY(-5px);
+            transition: 100ms linear;
+        }
+
+        .card-img-top-parent {
+            overflow: hidden;
+            transition: 200ms linear;
+            height: 300px;
+            position: relative;
+        }
+
+        .card-img-top:hover {
+            transition: 200ms linear;
+            transform: scale(1.1);
+        }
+
+        .card__heading {
+            padding: 10px;
+            background: lightgreen;
+            font-weight: bolder;
+            text-transform: uppercase;
+            font-family: ubuntu;
+            color: gray;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-button {
+        position: fixed;
+        bottom: 20px; /* Adjust the margin from the bottom as needed */
+        right: 20px; /* Adjust the margin from the right as needed */
+        background-color: #0e7deb; /* Dark blue color */
+        color: #ffffff; /* White text color */
+        border: none;
+        border-radius: 50%; /* Circular shape */
+        padding: 10px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    }
+    </style>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function openChatbotPopup() {
+            window.open('chatbot/chatbot_index.html', '_blank', 'width=600,height=400,location=no,menubar=no,toolbar=no');
+        }
+    </script>
+</head>
+<body>
+<div id='main'>
+    <div class="main__heading">
+        <img src="images/github.png?raw=true" style="height:40px;margin-right:10px;"/>
+        <b class='heading__text title'>AlgoView360</b> &nbsp;&nbsp; <span>Let's make DSA fun</span>
+    </div>
+    <div class="section row"></div>
+    <div class="body__bin">
+        <!-- Add a circular button to trigger the chatbot pop-up -->
+        <button class="chatbot-button" onclick="openChatbotPopup()">DSA Bot</button>
+    </div>
+</div>
+
+<script>
+    // Main
+    let sec = document.querySelector('.section');
+    let heading = document.querySelector('.main__heading');
+    let counter = 0;
+
+    document.querySelector(".title").addEventListener("click", () => {
+        if (counter == 10) {
+            if (window.localStorage.getItem("questions")) {
+                window.localStorage.removeItem("questions");
+            } else
+                window.localStorage.setItem("questions", true)
+            window.location.reload();
+        }
+        console.log(counter);
+        counter++;
+    });
+
+    let details = [
+        {
+            heading: 'Time Complexity',
+            image: `images/time_complexity.png`,
+            link: 'Templates_Utility/TimeComplexity.html',
+            sub_topics: [
+                "Big Oh",
+                "Big Omega",
+                "Big Theta"
+            ]
+        },
+        {
+            heading: 'Number Theory',
+            image: `images/number_theory.png`,
+            link: 'templates/number_theory/number_theory.html',
+            sub_topics: [
+                "gcd",
+                "Extended Euclidean",
+                "Sieve of Eratosthenes",
+                "Binary Exponentiation"
+            ]
+        },
+        {
+            heading: 'Recursion',
+            image: 'images/recursion.jpg',
+            link: 'templates/Recursion/recursion.html',
+            sub_topics: [
+                "factorial",
+                "Tower Of Hanoi"
+            ]
+        },
+        {
+            heading: 'String',
+            image: 'images/string.png',
+            link: 'templates/String/string.html',
+            sub_topics: [
+                "Naive",
+                "KMP",
+                "Rabin Karp",
+                "Z Function"
+            ]
+        },
+        {
+            heading: 'Matrix',
+            image: `images/matrix.png`,
+            link: 'templates/Matrix/matrix.html',
+            sub_topics: [
+                "Transpose",
+                "Sparse Matrix",
+                "Kadane 2D",
+                "Sorted Matrix Search"
+            ]
+        },
+        {
+            heading: 'Array',
+            image: `images/array.png`,
+            link: 'templates/Array/array.html',
+            sub_topics: [
+                "create",
+                "insert",
+                "delete",
+                "linear search",
+                "Kadane",
+                "sliding windows",
+                "rain water trapping"
+            ]
+        },
+        {
+            heading: 'Binary Search Algorithm',
+            image: 'images/search.jpeg',
+            link: 'templates/Binary_Search/search.html',
+            sub_topics: [
+                "binary search",
+                "start point in rotated array",
+                "find peak element",
+            ]
+        },
+        {
+            heading: 'Sort Algorithms',
+            image: 'images/sort.png',
+            link: 'templates/sort.html',
+            sub_topics: [
+                "bubble",
+                "selection",
+                "insertion",
+                "merge",
+                "quick",
+                "heap"
+            ]
+        },
+       
+  
+			 {
+     			heading: 'Linked List',
+     			image: 'images/linked_list.png',
+     			link: 'templates/Linked_list/linkedlist.html',
+     			sub_topics: [
+     				"singly",
+     				"doubly",
+     				"circular",
+     				"stack",
+     				"queue"
+     			]
+     		},
+
+			 {
+     			heading: 'Stack',
+     			image: `images/stack.png`,
+     			link: 'templates/Stack/stack.html',
+     			sub_topics: [
+     				"create",
+     				"push",
+     				"pop",
+     				"peek",
+                         "Balanced bracket",
+                         "infix to postfix",
+                         "infix to prefix",
+                         "postfix evaluation",
+                         "prefix evaluation",
+                         "Min Stack O(1)"
+
+     			]
+     		},
+               
+     		{
+     			heading: 'Queue',
+     			image: 'images/queue.png',
+     			link: 'templates/Queue/queue.html',
+     			sub_topics: [
+     				"create",
+     				"enqueue",
+     				"dequeue",
+                         "bfs"
+     			]
+     		},
+             {
+     			heading: 'Heap',
+     			image: 'images/heap.png',
+     			link: 'templates/heap/heap.html',
+     			sub_topics: [
+     				"create",
+     				"delete",
+     				"insert",
+     				"heapify",
+                    "heap sort"
+     			]
+     		},
+             {
+     			heading: 'Binar Search Tree',
+     			image: 'images/tree.png',
+     			link: 'templates/bst/tree.html',
+     			sub_topics: [
+     				"create",
+     				"insert",
+     				"delete",
+     				"find",
+     				"traversal",
+//                          	"rotations"
+     			]
+     		},
+
+             {
+     			heading: 'Backtracking',
+     			image: 'images/backtrack.png',
+     			link: 'templates/backtracking/backtracking.html',
+     			sub_topics: [
+     				"N Queens",
+     				"sudoku",
+                         "graph coloring"
+     			]
+     		},
+             {
+     			heading: 'Divide And Conquer',
+     			image: 'images/divide_and_conquer.png',
+     			link: 'templates/divide_and_conquer/divide_and_conquer.html',
+     			sub_topics: [
+     				"merge sort",
+     				"quick sort",
+                        	
+     			]
+     		},
+             {
+     			heading: 'Greedy',
+     			image: 'images/greedy.png',
+     			link: 'templates/greedy/greedy.html',
+     			sub_topics: [
+     				// "prims",
+     				"kruskals",
+     				"fractional knapsack",
+     				"counting money",
+     				"huffman coding"
+     			]
+     		},
+             {
+     			heading: 'Dynamic Programming',
+     			image: 'images/dynamic_programming.png',
+     			link: 'templates/dynamic/dynamic.html',
+     			sub_topics: [
+     				"Travelling Salesman",
+     				"0/1 knapsack",
+     				"unbounded Knapsack",
+     				"subset sum problem",
+     				"cutting_rod",
+     				// "coin_change_making",
+     				"longest_common_sequence",
+     				// "matrix chain multipication",
+     				"levenshtein distance",
+     				// "ladder"
+     			]
+     		},
+               {
+                    heading: 'Graph',
+                    image: 'images/graph.png',
+                    link: 'templates/graphs/graph.html',
+                    sub_topics: [
+                         "create",
+                         "dfs",
+                         "bfs",
+                         "kruskals",
+                        //  "prims",
+						"dfs maze",
+                         "djstras",
+                         "flood fill",
+                         "color filling",
+                        //  "topological sorting",
+                         "detect cycle",
+                        //  "bellman ford",
+                        //  "floyd warshall",
+                         "graph coloring",
+                        //  "snake and ladders",
+                         "travelling salesman",
+                        //  "ford fulkerson",
+                        //  "tarjons",
+						// "bridges",
+						// "kosarajus ",
+                        //  "Articulation points",
+                        //  "dinics"
+                    ]
+               },
+     		
+
+              //  // Extras
+
+               
+               {
+                    heading: 'Disjoint Set',
+                    image: 'images/disjoint_set.png',
+                    link: 'templates/disjoint_set/disjoint.html',
+                    sub_topics: [
+                         "find",
+                         "union"
+                    ]
+               },
+               {
+                    heading: 'Hashing Table',
+                    image: 'images/hashing_table.png',
+                    link: 'templates/hashing_table/hashing_table.html',
+                    sub_topics: [
+                         "open hashing",
+                         "closed hashing"
+                    ]
+               },
+
+               {
+                    heading: 'Non-deterministic Polynomial time',
+                    image: `images/np_hard.jpg`,
+                    link: 'Templates_Utility/np_hard.html',
+                    sub_topics: [
+                         "p",
+                         "np",
+                         "np hard",
+                         "np complete"
+
+                    ]
+               },
+			            
+
+              // Questions 
+              
+              {
+                    heading: 'Questions',
+                    image: 'images/question.jpeg',
+                    link: 'templates/questions.html',
+                    sub_topics: [
+                         "Data Structure",
+                         "Algorithm"
+                    ]
+               },
+     	]
+
+         if(!localStorage.getItem("counter"))
+			pop_up();
+
+// Utility
+
+      	details.forEach((detail, index) => {
+			let temp = window.localStorage.getItem("questions");
+			if(detail.heading == "Questions" && temp == null) {
+				// Do Nothing
+			}
+			else	
+			 add_card(detail, index);
+     	}) 
+     	
+     	
+
+				info = document.createElement("div");
+				info.innerHTML = html();
+				info.style.maxWidth = '600px';
+				info.style.textAlign = 'center';
+				info.style.margin = '30px'
+				info.style.transform = 'translateY(100px)';
+				info.style.background = 'white';
+				info.style.borderRadius = '10px'
+				info.classList.add("info__box");
+				info.style.boxShadow = '20px 20px 30px rgba(0, 0, 0, .3)'
+				info.style.padding = '20px'
+				info.style.border = '1px solid black';
+				info.style.margin = 'auto';
+				slider.appendChild(cross);
+				slider.appendChild(info);
+				slider.style.textAlign = 'center';
+
+				document.querySelector('.body__bin').appendChild(slider);
+	     		localStorage.setItem('first_time', 1)
+	     		document.querySelector('.cross').addEventListener("click", () => {
+	     			document.querySelector('.body__bin').innerHTML = '';
+	     		})
+
+	     	}
+     	}
+
+     </script>
+</body>
+</html>
