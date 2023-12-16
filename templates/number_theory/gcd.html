@@ -114,7 +114,37 @@
 		ctx.fillText(`${b}`, width * b / 100, ctx.canvas.height - height * 2 + height / 2);
 		ctx.restore();
 	}
-	
+	async function gcd(num1, num2) {
+		while(num1 != 0 && num2 != 0) {
+			rem = Math.floor(num1 / num2);
+			if(num1 < num2) {
+				temp = num1;
+				num1 = num2;
+				num2 = temp;
+			}
+			await sleep(time_delay).then(() => {
+				createGrid(num1, num2);
+				createBox(num1, num2);
+			})
+			mod = num1 % num2;
+			num1 = num2;
+			num2 = mod;
+		}
+		await sleep(time_delay).then(() => {
+			createGrid(num1, num2);
+			createBox(num1, num2);
+		})
+		await sleep(time_delay * 2).then(() => {
+			window.location.reload();
+		})
+
+	}
+
+
+	function sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
+
 	</script>
 </body>
 </html>
