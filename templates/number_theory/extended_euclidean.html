@@ -94,7 +94,75 @@
 		}
 	}
 
+	async function extended_gcd(i, a, b, x) {
+		if(b == 0) {
+			x[0] = 1;
+			x[1] = 0;
+			return a;
+		}
+		let x1 = [1, 1];
+		t = [];
+		t.push(i[0] + 1);
+		await sleep(time_delay).then(() => {
+			d = extended_gcd(t, b, a % b, x1)
+			return d;
+		}).then((res) => {
+			x[0] = x1[1]
+			x[1] = x1[0] - x1[1] * Math.floor(a / b);
+			create_rectangle(i[0], x[0], x[1], res);
+		})
+		 
+		
+		return d;
+	}
 
+	async function gcd(i, a, b) {
+		if(b == 0) {
+			return a;
+		}
+
+		await sleep(time_delay).then(() => {
+			create_rectangle(i[0], a, b, 1, true);
+		})
+		i[0]++;
+		return gcd(i, b, a % b);
+	}
+  	async function init() {
+		await create_rectangle(0);
+		add_listeners();
+	}
+
+
+	async function add_listeners() {
+		document.querySelector(".evaluate").addEventListener("click", () => {
+			document.querySelector(".evaluate").disabled = true;
+			async function get() {
+				let p = [0, 0];
+				m = a;
+				n = b;
+				d = a;
+				e = b;
+				i = [1]
+				await gcd(i, d, e);
+				a = m
+				b = n;
+				await extended_gcd(i, m, n, p);
+				await sleep(time_delay).then(() => {
+					ctx.fillStyle = "yellow";
+					ctx.fillRect(0, ctx.canvas.height - 40, ctx.canvas.width, 40);
+					ctx.fillStyle = "red";
+					ctx.fillText(`X = ${p[0]}`, ctx.canvas.width / 2 - 100, ctx.canvas.height - 20);
+					ctx.fillText(`Y = ${p[1]}`, ctx.canvas.width / 2 + 100, ctx.canvas.height - 20);
+				
+				})	
+			}
+			get();
+		})
+	}
+
+	function sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
 
 	</script>
 </body>
