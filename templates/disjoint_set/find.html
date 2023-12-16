@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Disjoint Set( Find )</title>
+	<style>
+		html, * {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			text-align: center;
+		}
+
+		#readButton {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 10px;
+			font-size: 15px;
+			cursor: pointer;
+   		 }
+
+		.grid {
+			background: lightgreen;
+			margin: auto;
+		}
+
+		p:nth-child(1) {
+			padding: 10px 20px;
+			text-align: center;
+			font-family: ubuntu;
+			font-weight: bolder;
+			font-size: 25px;
+			text-transform: uppercase;
+			color: gray;
+		}
+
+		.find {
+			padding: 10px 30px;
+		}
+
+		[type="number"] {
+			width: 80px;
+			padding: 10px 5px 10px 30px;
+			margin-right: 20px;
+		}
+
+	</style>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<p>Disjoint Set( Find )</p>
+	<canvas class='grid' width="1000" height="500">
+		
+	</canvas>
+	<div>
+		<input type="number" value=1 max=12>
+		<button class="find">
+			Find
+		</button>
+	</div>
+	<button id="readButton" onclick="readText()">"Read Aloud"</button>
+	<p style="text-align:justify"> Disjoint sets refer to sets that have no elements in common. In the context of graph theory, detecting disjoint sets involves determining whether the vertices of a graph can be partitioned into subsets where no two vertices within the same subset are directly connected. This is often accomplished using techniques like Union-Find or Disjoint Set Union (DSU). Union-Find involves merging sets and checking for cycles during edge additions. DSU optimizes Union-Find with techniques like path compression and union by rank, ensuring efficient identification of disjoint sets in graphs. Detecting disjoint sets is crucial for applications like network analysis, clustering, and optimizing connected components in various systems.
+	</p>
+	<script>
+
+
+
+	</script>
+</body>
+</html>
