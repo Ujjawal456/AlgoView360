@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Closed Hashing</title>
+	<style>
+		html, * {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			position: relative;
+			overflow: hidden;
+		}
+
+		body {
+			min-height: 100vh;
+		}
+
+		#readButton {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 10px;
+			font-size: 15px;
+			cursor: pointer;
+   		 }
+
+
+		.grid {
+			max-width: 600px;
+			position: relative;
+			padding: 10px;
+			margin: 50px auto;
+			outline: 2px solid green;
+		}
+
+		p:nth-child(1) {
+			padding: 20px;
+			text-align: center;
+			font-family: ubuntu;
+			font-weight: bolder;
+			font-size: 20px;
+		}
+
+		.algo {
+			display: block;
+			padding: 10px;
+			background: lightgreen;
+			margin: 10px;
+			box-shadow: -5px 10px 5px rgba(0, 0, 0, .2);
+		}
+
+		.algo__link {
+			text-decoration: none;
+			color: purple;
+			font-size: 20px;
+			font-weight: bolder;
+			text-shadow: 10px 10px 10px rgba(0, 0, 0, .3);
+		}
+
+	</style>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<p class='heading'>Closed Hashing</p>
+	<div class='grid'></div>
+
+	</div>
+
+	<div class="circular__read">
+		
+	</div>
+	<button id="readButton" onclick="readText()">"Read Aloud"</button>
+	<p style="text-align:justify">Closed hashing, also known as open addressing, represents another collision resolution technique used in hash tables. In contrast to open hashing, closed hashing aims to resolve collisions by placing the colliding element in a different, open slot within the same array. This is achieved through various probing methods, such as linear probing, quadratic probing, or double hashing.
+
+In closed hashing, when a collision occurs at a particular hash index, the algorithm searches for the next available slot in a systematic way until an empty location is found. This approach minimizes the need for additional data structures and is memory-efficient. However, it can lead to clustering, where consecutive slots are occupied, potentially impacting the efficiency of retrieval operations.
+
+Closed hashing is suitable for scenarios where memory usage needs to be optimized, and the hash table size is known or can be adjusted dynamically. It is commonly used in applications where space efficiency and simplicity in handling collisions are important considerations, such as in some implementations of dictionaries and caches.
+	</p>
+	<script>
+
+// Main
+function readText() {
+      var predefinedText = "Closed hashing, also known as open addressing, represents another collision resolution technique used in hash tables. In contrast to open hashing, closed hashing aims to resolve collisions by placing the colliding element in a different, open slot within the same array. This is achieved through various probing methods, such as linear probing, quadratic probing, or double hashing."
+
+"In closed hashing, when a collision occurs at a particular hash index, the algorithm searches for the next available slot in a systematic way until an empty location is found. This approach minimizes the need for additional data structures and is memory-efficient. However, it can lead to clustering, where consecutive slots are occupied, potentially impacting the efficiency of retrieval operations."
+
+"Closed hashing is suitable for scenarios where memory usage needs to be optimized, and the hash table size is known or can be adjusted dynamically. It is commonly used in applications where space efficiency and simplicity in handling collisions are important considerations, such as in some implementations of dictionaries and caches."
+							
+		var speechSynthesis = window.speechSynthesis;
+
+      var utterance = new SpeechSynthesisUtterance(predefinedText);
+      utterance.lang = 'en-US';
+      utterance.pitch = 2; // Pitch ranges from 0 to 2
+      utterance.rate = 0.7; // Rate ranges from 0.1 to 10
+      utterance.volume = 1; // Volume ranges from 0 to 1
+      utterance.voiceURI = 'Google US English ';
+
+      speechSynthesis.speak(utterance);
+    }
+
+		let grid = document.querySelector('.grid');
+		let algo = [
+			{
+				name: 'Linear Probing',
+				link: `closed_hashing/linear_probing.html`
+			},
+			{
+				name: 'Quadratic Probing',
+				link: `closed_hashing/quadratic_probing.html`
+			},
+			{
+				name: "Double Hashing",
+				link: 'closed_hashing/double_hashing.html'
+			}
+		]
+		init();
+
+// Utility function 
+
+		function init() {
+			algo.forEach((e, i) => {
+				let html = `
+						<a href="${e.link}" class="algo__link">${e.name}</a>
+				`
+				let algo = document.createElement('div');
+				algo.classList.add('algo');
+				algo.innerHTML = html;
+				grid.appendChild(algo);
+			})
+		}
+	</script>
+</body>
+</html>
