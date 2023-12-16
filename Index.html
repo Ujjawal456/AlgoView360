@@ -473,6 +473,106 @@
 			else	
 			 add_card(detail, index);
      	}) 
+
+        
+         function add_card(details, index) {
+     		let card = document.createElement('div');
+			['col', 'col-12', 'col-md-6', 'col-lg-4'].forEach((el) => card.classList.add(el));
+			card.style.borderRadius = '10px';
+			card.style.transform = 'scale(.9)';
+			let card_html = `
+				<div class="card" style="">
+				  <div class="card__heading">${details.heading}</div>
+				  <a href="${details.link}" target="_self" class="card-img-top-parent">
+				   	<img src="${details.image}" class="card-img-top" alt="${details.heading}">
+				  </a>
+				  <div class="card-body">
+				  </div>
+				</div>
+     		`	     		
+     		card.innerHTML = card_html;
+     		sec.appendChild(card);
+
+     		details.sub_topics.forEach((e) => {
+	     		let card_span = document.createElement('button');
+	     		card_span.classList.add('badge');
+	     		card_span.classList.add('badge-primary');
+	     		card_span.innerText = e.toUpperCase();
+
+	     		document.querySelectorAll('.card-body')[index].appendChild(card_span);
+     		})
+     	}
+
+
+
+     	// POP UP
+ 
+     	function pop_up() {
+			if(+localStorage.getItem("counter") == 1) return;
+
+			if(+localStorage.getItem("first_time") == 1){
+				localStorage.setItem("counter", 1);
+			}
+			else
+				localStorage.setItem('first_time', 1)
+			
+			if(true && +localStorage.getItem('first_time') == 1) {
+     		    let cross;
+				let slider;
+				let info;
+				cross = document.createElement("span");
+				cross.innerText = "X";
+				cross.style.position = 'absolute';
+				cross.style.top = '10px';
+				cross.style.right = '10px';
+				cross.style.borderRadius = "10px";
+				cross.style.color = 'white';
+				cross.style.boxShadow = '1px 1px 10px rgba(255, 255, 255, .5)'
+				cross.style.padding = '15px 20px';
+				cross.style.cursor = 'pointer';
+				cross.classList.add('cross')
+				slider = document.createElement("div");
+				slider.style.width = '100vw';
+				slider.style.height = '100vh';
+				slider.style.overflow = 'scroll';
+				slider.style.background = 'rgba(0, 0, 0, .9)';
+				slider.style.position = 'fixed';
+				slider.style.top = '0px';
+				slider.style.left = '0px';
+				slider.style.zIndex = '20';
+				// debugger
+
+				// POPUP Info
+
+				let html =  () => {
+					let a = `
+
+					<div class="popup__heading">DSALGO</div>
+					<img src="logo/logo_2.png?raw=true" 
+						style="width:200px;"
+					/>
+					<div class="popup__sub__heading">
+						<b>Ds Algo visualizer </b> 
+						<br />
+						<code>
+							is made for students who want to learn Data structures and algorithms with Animations. This project includes all the important data structures that are being widely used.
+						</code>
+						<hr />
+						<h5> <b>Topics Covered</b> </h5>
+						<div>` 
+					
+					let b = "";
+					for(let i=0; i<details.length; i++) 
+							b += `<span class="badge badge-primary" style="margin:3px;">${details[i].heading}</span>`
+					
+					let c = `	</div>
+								</div>
+								
+								<blockquote class="popup__sub__heading__details"> </blockquote>
+							
+						`
+					return a + b + c;
+				}
      	
      	
 
