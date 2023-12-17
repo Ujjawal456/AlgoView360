@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stack Using Linked List</title>
+	<style>
+		html, * {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			text-align: center;
+		}
+
+		.grid {
+			width: 1000px;
+			position: relative;
+			height: 500px;
+			background: lightgreen;
+			margin: 40px auto;
+			display: flex;
+			flex-wrap: wrap;
+			outline: 1px solid red;
+		}
+
+		p, p:nth-child(1) {
+			padding: 5px 20px;
+			text-align: center;
+			font-family: ubuntu;
+			font-weight: bolder;
+			font-size: 20px;
+		}
+
+		.stack__controllers {
+			max-width: 500px;
+			margin: auto;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.stack__push, .stack__pop, .stack__peek {
+			padding: 10px 30px;
+		}
+
+		.stack__peek__input {
+			width: 60px;
+			padding: 10px;
+		}
+
+		.color__scheme {
+			display: flex;
+			padding: 10px;
+			justify-content: space-between;
+			border: 1px solid lightgreen;
+			margin-right: 5px;
+		}
+
+		.color__scheme > span:nth-child(1) {
+			height: 20px;
+			width: 20px;
+			padding: 5px;
+			margin-right: 20px;
+			background: lightgreen;
+		}
+
+
+		.color__scheme > span:nth-child(2) {
+			font-weight: bolder;
+			color: gray;
+			margin: 0px 20px 0 0 ;
+
+		}
+
+	</style>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<p>Stack Using Linked List</p>
+	<canvas class='grid' width='1000',height='400px'>
+		
+	</canvas>
+
+	<div class="stack__controllers">
+		<div class="color__scheme">
+			<span></span>
+			<span>Top</span>
+		</div>
+		<button class="stack__push">PUSH</button>
+		<button class="stack__pop">POP</button>
+		<div>
+			<input type="number" class="stack__peek__input" placeholder="Peek Value" value="0" name="peek">
+			<button class="stack__peek">PEEK</button>
+		</div>		
+	</div>
+
+	<script>
+
+	</script>
+</body>
+</html>
+
+
+	<script>
+
+	</script>
+</body>
+</html>
