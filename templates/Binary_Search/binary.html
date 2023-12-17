@@ -12,6 +12,15 @@
 		body {
 			text-align: center;
 		}
+		
+		#readButton {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 10px;
+			font-size: 15px;
+			cursor: pointer;
+   		 }
 
 		.grid {
 			width: 1000px;
@@ -89,7 +98,117 @@
 		</div>		
 	</div>
 
+	<button id="readButton" onclick="readText()">"Read Aloud"</button>
+	<p style="text-align:justify">
+        Binary Search Theory:
+
+Binary search is a fundamental algorithm for searching an element in a sorted array. It follows the principle of "divide and conquer," reducing the search space by half in each step. The basic idea is to repeatedly divide the array in half and compare the target element with the middle element of the current subarray. If the target element is equal to the middle element, the search is successful. If the target is smaller, the search continues in the left half; if the target is larger, the search continues in the right half. This process continues until the element is found or the search space becomes empty.
+
+Algorithm:
+
+Here's a step-by-step explanation of the binary search algorithm:
+
+Initialization:
+
+Set two pointers, low and high, to the start and end of the array, respectively.
+Calculate the middle index: mid = (low + high) / 2.
+Comparison:
+
+Compare the middle element arr[mid] with the target element.
+If arr[mid] is equal to the target, the search is successful, and the index mid is returned.
+If arr[mid] is greater than the target, update high to mid - 1 to search in the left half.
+If arr[mid] is smaller than the target, update low to mid + 1 to search in the right half.
+Repeat:
+
+Repeat steps 1 and 2 until the target element is found or the search space is empty (low > high).
+Result:
+
+If the target element is found, return its index.
+If the target element is not in the array, return a special value indicating that it's not present.
+Pseudocode:
+
+Here's a simple pseudocode representation:
+
+function binarySearch(arr, target):
+    low = 0
+    high = length(arr) - 1
+    
+    while low <= high:
+        mid = (low + high) / 2
+        
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    
+    return -1  // Element not found
+
+
+	Complexity: The binary search algorithm has a time complexity of O(log n), where n is the number of elements in the array. This makes it significantly more efficient than linear search (O(n)) for large datasets. Binary search is widely used in various applications, including database searches, finding elements in sorted lists, and in the implementation of some data structures like binary search trees.
+</p>
 	<script>
+        function readText() {
+            var predefinedText = `Binary Search Theory:
+
+Binary search is a fundamental algorithm for searching an element in a sorted array. It follows the principle of "divide and conquer," reducing the search space by half in each step. The basic idea is to repeatedly divide the array in half and compare the target element with the middle element of the current subarray. If the target element is equal to the middle element, the search is successful. If the target is smaller, the search continues in the left half; if the target is larger, the search continues in the right half. This process continues until the element is found or the search space becomes empty.
+
+Algorithm:
+
+Here's a step-by-step explanation of the binary search algorithm:
+
+Initialization:
+
+Set two pointers, low and high, to the start and end of the array, respectively.
+Calculate the middle index: mid = (low + high) / 2.
+Comparison:
+
+Compare the middle element arr[mid] with the target element.
+If arr[mid] is equal to the target, the search is successful, and the index mid is returned.
+If arr[mid] is greater than the target, update high to mid - 1 to search in the left half.
+If arr[mid] is smaller than the target, update low to mid + 1 to search in the right half.
+Repeat:
+
+Repeat steps 1 and 2 until the target element is found or the search space is empty (low > high).
+Result:
+
+If the target element is found, return its index.
+If the target element is not in the array, return a special value indicating that it's not present.
+Pseudocode:
+
+Here's a simple pseudocode representation:
+
+function binarySearch(arr, target):
+    low = 0
+    high = length(arr) - 1
+    
+    while low <= high:
+        mid = (low + high) / 2
+        
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    
+    return -1  // Element not found
+
+	Complexity:
+	The binary search algorithm has a time complexity of O(log n), where n is the number of elements in the array. This makes it significantly more efficient than linear search (O(n)) for large datasets. Binary search is widely used in various applications, including database searches, finding elements in sorted lists, and in the implementation of some data structures like binary search trees.`;
+	
+var speechSynthesis = window.speechSynthesis;
+            var utterance = new SpeechSynthesisUtterance(predefinedText);
+            utterance.lang = 'en-US';
+            utterance.pitch = 2; // Pitch ranges from 0 to 2
+            utterance.rate = 0.7; // Rate ranges from 0.1 to 10
+            utterance.volume = 1; // Volume ranges from 0 to 1
+            utterance.voiceURI = 'Google US English';
+        
+            speechSynthesis.speak(utterance);
+        }
+
 
 	</script>
 </body>
@@ -97,6 +216,7 @@
 
 
 	<script>
+
 // MAIN
 	arr =[];
 	max = 100;
