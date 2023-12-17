@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Singly Linked List Visualization</title>
+    <style>
+        html, * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        #canvas {
+            background: lightgreen;
+            margin: auto;
+        }
+
+        p {
+            padding: 20px;
+            text-align: center;
+            font-family: ubuntu;
+            font-weight: bolder;
+            font-size: 15px;
+            text-transform: uppercase;
+            color: gray;
+        }
+
+        .controllers > button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <p>Singly Linked List Visualization</p>
+    <canvas id="canvas" width="1000" height="400"></canvas>
+    <div class="controllers">
+        <button id="insertButton">Insert</button>
+        <button id="deleteFromBeginningButton">Delete from Beginning</button>
+        <button id="deleteFromEndButton">Delete from End</button>
+    </div>
+    <script>
+        // Singly Linked List Node class
+        class Node {
+            constructor(data) {
+                this.data = data;
+                this.next = null;
+            }
+        }
+
+        // Singly Linked List class
+        class SinglyLinkedList {
+            constructor() {
+                this.head = null;
+            }
+
+            // Function to insert a new node at the end of the list
+            insert(data) {
+                const newNode = new Node(data);
+                if (!this.head) {
+                    this.head = newNode;
+                } else {
+                    let current = this.head;
+                    while (current.next) {
+                        current = current.next;
+                    }
+                    current.next = newNode;
+                }
+            }
+
+            // Function to delete the first node from the list
+            deleteFromBeginning() {
+                if (this.head) {
+                    this.head = this.head.next;
+                }
+            }
+
+            // Function to delete the last node from the list
+            deleteFromEnd() {
+                if (!this.head) {
+                    return;
+                }
+
+                if (!this.head.next) {
+                    this.head = null;
+                    return;
+                }
+
+                let current = this.head;
+                let previous = null;
+
+                while (current.next) {
+                    previous = current;
+                    current = current.next;
+                }
+
+                previous.next = null;
+            }
+        }
+
+        // Canvas and drawing context
+        const canvas = document.querySelector("#canvas");
+        const ctx = canvas.getContext("2d");
+
+        // Initialize the singly linked list
+        const linkedList = new SinglyLinkedList();
+
+        // Function to draw the singly linked list on the canvas
+        function drawSinglyLinkedList() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            let current = linkedList.head;
+            let x = 20;
+            const y = 100;
+            const radius = 20;
+
+            while (current) {
+                // Draw a node as a circle
+                ctx.beginPath();
+                ctx.arc(x, y, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = "lightblue";
+                ctx.fill();
+                ctx.strokeStyle = "blue";
+                ctx.stroke();
+
+                // Draw data value inside the circle
+                ctx.fillStyle = "black";
+                ctx.font = "bold 16px Arial";
+                ctx.fillText(current.data, x - 10, y + 6);
+
+                // Draw an arrow for the next pointer (if not the last node)
+                if (current.next) {
+                    ctx.beginPath();
+                    ctx.moveTo(x + radius, y);
+                    ctx.lineTo(x + 2 * radius, y);
+                    ctx.lineTo(x + 2 * radius - 5, y - 5);
+                    ctx.moveTo(x + 2 * radius, y);
+                    ctx.lineTo(x + 2 * radius - 5, y + 5);
+                    ctx.strokeStyle = "blue";
+                    ctx.stroke();
+                }
+
+                // Draw the "HEAD" indicator outside the circle with a pointer
+                if (current === linkedList.head) {
+                    ctx.fillStyle = "green";
+                    ctx.fillRect(x - 25, y - 45, 50, 20);
+                    ctx.strokeStyle = "green";
+                    ctx.beginPath();
+                    ctx.moveTo(x, y - 45);
+                    ctx.lineTo(x, y - 60);
+                    ctx.lineTo(x + 10, y - 50);
+                    ctx.closePath();
+                    ctx.stroke();
+                    ctx.fillStyle = "white";
+                    ctx.font = "bold 12px Arial";
+                    ctx.fillText("HEAD", x - 18, y - 34);
+                }
+
+                current = current.next;
+                x += 3 * radius; // Adjust the x-position for the next node
+            }
+        }
+
+        // Event listener for Insert button
+        document.querySelector("#insertButton").addEventListener("click", () => {
+            const data = prompt("Enter a value to insert:");
+            if (data) {
+                linkedList.insert(data);
+                drawSinglyLinkedList();
+            }
+        });
+
+        // Event listener for Delete from Beginning button
+        document.querySelector("#deleteFromBeginningButton").addEventListener("click", () => {
+            if (!linkedList.head) {
+                alert("The list is empty.");
+                return;
+            }
+            linkedList.deleteFromBeginning();
+            drawSinglyLinkedList();
+        });
+
+        // Event listener for Delete from End button
+        document.querySelector("#deleteFromEndButton").addEventListener("click", () => {
+            if (!linkedList.head) {
+                alert("The list is empty.");
+                return;
+            }
+            linkedList.deleteFromEnd();
+            drawSinglyLinkedList();
+        });
+
+        // Initial drawing of the singly linked list
+        drawSinglyLinkedList();
+    </script>
+</body>
+</html>
