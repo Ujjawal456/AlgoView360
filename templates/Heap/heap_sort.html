@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Heap Sort</title>
+	<style>
+		html, * {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+	
+		}
+
+		body {
+			text-align: center;
+		}
+
+		#readButton {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 10px;
+			font-size: 15px;
+			cursor: pointer;
+   		 }
+
+		.grid {
+			position: relative;
+			background: lightgreen;
+			margin: 10px auto;
+			display: flex;
+			flex-wrap: wrap;
+			outline: 1px solid red;
+		}
+
+		p, p:nth-child(1) {
+			padding: 20px;
+			text-align: center;
+			font-family: ubuntu;
+			font-weight: bolder;
+			font-size: 20px;
+		}
+
+		.arr__controllers {
+			max-width: 500px;
+			margin: auto;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.arr__delete, .arr__insert, .arr__search {
+			padding: 10px 30px;
+		}
+
+		.arr__peek__input {
+			width: 60px;
+			padding: 10px;
+		}
+
+		.color__scheme {
+			display: flex;
+			padding: 10px;
+			justify-content: space-between;
+			border: 1px solid lightgreen;
+			margin-right: 5px;
+		}
+
+		.color__scheme > span:nth-child(1) {
+			height: 20px;
+			width: 20px;
+			padding: 5px;
+			margin-right: 20px;
+			background: lightgreen;
+		}
+
+
+		.color__scheme > span:nth-child(2) {
+			font-weight: bolder;
+			color: gray;
+			margin: 0px 20px 0 0 ;
+
+		}
+
+		.insert__details {
+			display: flex;
+			justify-content: center;
+			align-self: center;
+			padding: 20px;
+			background: lightgreen;
+		}
+		.insert__details > * {
+			padding: 10px;
+		}
+
+		.insert__details label {
+			font-weight: bold;
+			color: red;
+		}
+
+		.insert__submit > button, .insert__details input, .delete__submit > button {
+			padding: 10px;
+		}
+
+	</style>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<p>Heap Sort</p>
+	<canvas class='grid' width='1000' height='500'>
+		
+	</canvas>
+
+	<div class="arr__controllers">
+		<div>
+			<button class="arr__insert">Insert</button>
+			<button class="arr__delete" disabled>Delete</button>
+		</div>		
+	</div>
+	<button id="readButton" onclick="readText()">"Read Aloud"</button>
+	<p style="text-align:justify"> 
+		Heap Sort is a comparison-based sorting algorithm that leverages the properties of a binary heap data structure. The algorithm's core steps involve creating a max heap (for ascending order) or min heap (for descending order) from the input array. The heap is then iteratively reduced to obtain a sorted array.
+
+The process begins by building a heap from the input elements. Starting from the last non-leaf node and moving upwards, the algorithm heapifies the array, ensuring that the heap property is satisfied. Once the heap is established, the maximum (for max heap) or minimum (for min heap) element is extracted and placed at the end of the array. The heap property is then restored, and the process repeats until the entire array is sorted.
+
+Heap Sort is advantageous for its in-place nature and lack of additional data structures, as the heap is constructed within the input array itself. Although its average and worst-case time complexity is O(n log n), where n is the number of elements, Heap Sort is less cache-friendly than other algorithms due to its non-locality of reference. Nonetheless, it remains a reliable choice for scenarios where a simple and space-efficient sorting algorithm is required.
+	</p>
+	<script>
+		function readText() {
+      var predefinedText = "Heap Sort is a comparison-based sorting algorithm that leverages the properties of a binary heap data structure. The algorithm's core steps involve creating a max heap (for ascending order) or min heap (for descending order) from the input array. The heap is then iteratively reduced to obtain a sorted array."
+
+"The process begins by building a heap from the input elements. Starting from the last non-leaf node and moving upwards, the algorithm heapifies the array, ensuring that the heap property is satisfied. Once the heap is established, the maximum (for max heap) or minimum (for min heap) element is extracted and placed at the end of the array. The heap property is then restored, and the process repeats until the entire array is sorted."
+
+"Heap Sort is advantageous for its in-place nature and lack of additional data structures, as the heap is constructed within the input array itself. Although its average and worst-case time complexity is O(n log n), where n is the number of elements, Heap Sort is less cache-friendly than other algorithms due to its non-locality of reference. Nonetheless, it remains a reliable choice for scenarios where a simple and space-efficient sorting algorithm is required."
+							
+							var speechSynthesis = window.speechSynthesis;
+
+      var utterance = new SpeechSynthesisUtterance(predefinedText);
+      utterance.lang = 'en-US';
+      utterance.pitch = 2; // Pitch ranges from 0 to 2
+      utterance.rate = 0.7; // Rate ranges from 0.1 to 10
+      utterance.volume = 1; // Volume ranges from 0 to 1
+      utterance.voiceURI = 'Google US English ';
+
+      speechSynthesis.speak(utterance);
+    }
+	</script>
+</body>
+</html>
+
+
+	<script>
+
+
+	</script>
+</body>
+</html>
