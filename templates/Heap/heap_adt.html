@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Heap ADT</title>
+	<style>
+		html, * {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+	
+		}
+
+		body {
+			text-align: center;
+		}
+
+		#readButton {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 10px;
+			font-size: 15px;
+			cursor: pointer;
+   		 }
+
+		.grid {
+			position: relative;
+			background: lightgreen;
+			margin: 10px auto;
+			display: flex;
+			flex-wrap: wrap;
+			outline: 1px solid red;
+		}
+
+		p, p:nth-child(1) {
+			padding: 20px;
+			text-align: center;
+			font-family: ubuntu;
+			font-weight: bolder;
+			font-size: 20px;
+		}
+
+		.arr__controllers {
+			max-width: 500px;
+			margin: auto;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.arr__delete, .arr__insert, .arr__search {
+			padding: 10px 30px;
+		}
+
+		.arr__peek__input {
+			width: 60px;
+			padding: 10px;
+		}
+
+		.color__scheme {
+			display: flex;
+			padding: 10px;
+			justify-content: space-between;
+			border: 1px solid lightgreen;
+			margin-right: 5px;
+		}
+
+		.color__scheme > span:nth-child(1) {
+			height: 20px;
+			width: 20px;
+			padding: 5px;
+			margin-right: 20px;
+			background: lightgreen;
+		}
+
+
+		.color__scheme > span:nth-child(2) {
+			font-weight: bolder;
+			color: gray;
+			margin: 0px 20px 0 0 ;
+
+		}
+
+		.insert__details {
+			display: flex;
+			justify-content: center;
+			align-self: center;
+			padding: 20px;
+			background: lightgreen;
+		}
+		.insert__details > * {
+			padding: 10px;
+		}
+
+		.insert__details label {
+			font-weight: bold;
+			color: red;
+		}
+
+		.insert__submit > button, .insert__details input, .delete__submit > button {
+			padding: 10px;
+		}
+
+	</style>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body>
+	<p>Heap ADT</p>
+	<canvas class='grid' width='1000' height='500'>
+		
+	</canvas>
+
+	<div class="arr__controllers">
+		<div>
+			<button class="arr__insert">Insert</button>
+			<button class="arr__delete" disabled>Delete</button>
+		</div>		
+	</div>
+	<button id="readButton" onclick="readText()">"Read Aloud"</button>
+	<p style="text-align:justify"> A heap is a specialized tree-based data structure that satisfies the heap property. The heap property dictates the relationship between a node and its children in a way that ensures the key of each node is either always greater (max heap) or smaller (min heap) than the keys of its children. Heaps are commonly implemented as binary heaps, where each node has at most two children, and the tree is complete, meaning all levels are fully filled except possibly for the last one, which is filled from left to right.
+
+	Heap operations primarily include insertion, extraction, and heapify. Insertion involves adding a new element to the heap while maintaining the heap property. Extraction refers to removing the root element, which is either the maximum or minimum value in the heap, depending on whether it's a max or min heap. Heapify is the process of ensuring the heap property is maintained after an element is added or removed. These operations typically have logarithmic time complexities, making heaps efficient for priority queue implementations.
+			
+			The underlying mechanism of a heap's functionality lies in its tree structure and the heap property, which allows for quick identification of the highest or lowest priority element. This structure ensures efficient access to the element with the highest or lowest key, making heaps valuable in scenarios where quick access to extreme values is crucial, such as in priority queues and heap-based sorting algorithms.
+	</p>
+
+	<script>
+		function readText() {
+      var predefinedText = "A heap is a specialized tree-based data structure that satisfies the heap property. The heap property dictates the relationship between a node and its children in a way that ensures the key of each node is either always greater (max heap) or smaller (min heap) than the keys of its children. Heaps are commonly implemented as binary heaps, where each node has at most two children, and the tree is complete, meaning all levels are fully filled except possibly for the last one, which is filled from left to right."
+
+"Heap operations primarily include insertion, extraction, and heapify. Insertion involves adding a new element to the heap while maintaining the heap property. Extraction refers to removing the root element, which is either the maximum or minimum value in the heap, depending on whether it's a max or min heap. Heapify is the process of ensuring the heap property is maintained after an element is added or removed. These operations typically have logarithmic time complexities, making heaps efficient for priority queue implementations."
+
+"The underlying mechanism of a heap's functionality lies in its tree structure and the heap property, which allows for quick identification of the highest or lowest priority element. This structure ensures efficient access to the element with the highest or lowest key, making heaps valuable in scenarios where quick access to extreme values is crucial, such as in priority queues and heap-based sorting algorithms."
+							
+		var speechSynthesis = window.speechSynthesis;
+
+      var utterance = new SpeechSynthesisUtterance(predefinedText);
+      utterance.lang = 'en-US';
+      utterance.pitch = 2; // Pitch ranges from 0 to 2
+      utterance.rate = 0.7; // Rate ranges from 0.1 to 10
+      utterance.volume = 1; // Volume ranges from 0 to 1
+      utterance.voiceURI = 'Google US English ';
+
+      speechSynthesis.speak(utterance);
+    }
+	</script>
+</body>
+</html>
+
+
+	<script>
+
+	</script>
+</body>
+</html>
