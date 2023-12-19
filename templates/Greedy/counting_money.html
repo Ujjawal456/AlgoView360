@@ -52,6 +52,87 @@
 	</div>
 	<script>
 
+// Main
+	let ctx = document.querySelector("canvas").getContext("2d");
+	let size = 10;
+	let arr = [];
+	let time_delay = 100;
+	let val = [1, 2, 5, 10, 20, 50, 100, 200]
+	let coins = [
+		'one.jpg',
+		'two.png',
+		'five.jpg',
+		'ten.jpg',
+		'twenty.png',
+		'fifty.png',
+		'hundred.jpeg',
+		'two_hundred.jpg'
+	]
+
+	init();
+// Utility
+	function init() {
+		load_images();
+		add_listeners()
+	}
+
+	function load_images() {
+		start = 100;
+		for(let i=0; i<8; i++) {
+			let coin = new Image();
+			width = 50;
+			height = 55;
+		
+			coin.src = `../../images/coins/${coins[i]}`
+			coin.onload = (e) =>  {
+				width = (coin.width / coin.height) * height;
+				ctx.drawImage(coin, start, 10 + i*5 + (i * height), width, height);
+			}
+		}
+	}
+
+	function add_listeners() {
+		document.querySelector(".count__money").addEventListener("click", () => {
+			value = +document.querySelector(".value").value;	
+			if(value <= 0) {
+				alert("Invalid Number");
+				return;
+			}
+			document.querySelector(".count__money").disabled = true;
+			count_money(value);
+		})
+	}
+
+	async function count_money(value) {
+		ans = []
+
+		for(let i=0; i<8; i++) {
+			ans.push(0);
+		}
+		for(let i=8; i>=0; i--) {
+			while(value >= val[i]) {
+				value -= val[i];
+				ans[i]++;
+			}
+		}
+
+		for(let i=8; i>=0; i--) {
+			width = 50;
+			height = 55;
+			start = 300;
+			await sleep(time_delay).then(() => {
+				ctx.beginPath();
+				ctx.font = "bolder 20px arial"
+				ctx.fillText(`X ${ans[i]}`, start + width / 2, height / 2 + 10 + i*5 + (i * height));
+				ctx.closePath();
+			})
+		}
+
+	}
+
+	function sleep(ms) {
+		return new Promise(resolve => setTimeout(resolve, ms));
+	}
 
 	</script>
 </body>
